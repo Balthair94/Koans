@@ -31,19 +31,19 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def handle_fives(num_fives)
   #Get the div and mod agains 3
-  fives_three, fives_others = num_fives.divmod 3
+  fives_three, fives_others = num_fives.divmod(3)
   return ((500 * fives_three) + (fives_others * 50)) 
 end
 
 def handle_ones(num_ones)
   #Get the div and mod agains 3
-  ones_three, ones_others = num_ones.divmod 3
+  ones_three, ones_others = num_ones.divmod(3)
   return ((1000 * ones_three) + (ones_others * 100)) 
 end
 
 def handle_others(value, num_others)
   #Get the div and mod agains 3
-  others_three, = num_others.divmod 3
+  others_three, = num_others.divmod(3)
   return (value * 100 * others_three)
 end
 
