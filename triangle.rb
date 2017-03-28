@@ -14,7 +14,8 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  if [a,b,c].max > 0
+  test_array = [a, b, c]
+  if test_array.max > 0 && test_array.min > 0 && test_array.uniq.size == 3
   	return :equilateral if a == b && b == c
   	return :isosceles if a == b || b == c || a == c
   	return :scalene if a != b && b != c
