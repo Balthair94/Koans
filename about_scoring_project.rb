@@ -29,8 +29,54 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+def handle_fives(num_fives)
+  #Get the div and mod agains 3
+  fives_three, fives_others = num_fives.divmod 3
+  return ((500 * fives_three) + (fives_others * 50)) 
+end
+
+def handle_ones(num_ones)
+  #Get the div and mod agains 3
+  ones_three, ones_others = num_ones.divmod 3
+  return ((1000 * ones_three) + (ones_others * 100)) 
+end
+
+def handle_others(value, num_others)
+  #Get the div and mod agains 3
+  others_three, = num_others.divmod 3
+  return (value * 100 * others_three)
+end
+
 def score(dice)
-  # You need to write this method
+  points = 0;
+  counts = {}
+
+  if dice.size <= 0
+    return 0
+  else
+    #We get the uniq values in the array and then we assing this
+    #into a value. This means in a "key" there is the value and it
+    #contains the times count thats this ones is repeated in the
+    #array "dice"
+    dice.uniq.each do |value|
+      counts[value] = dice.count(value)
+      puts counts
+    end
+
+    #We read each value with is numbers of times 
+    counts.each do |value, found|
+      case value
+        when 1
+          points += handle_ones(found)
+        when 5
+          points += handle_fives(found)
+        else
+          points += handle_others(value, found)
+      end
+    end
+    return points
+  end
+
 end
 
 class AboutScoringProject < Neo::Koan
